@@ -20,4 +20,47 @@ The main of this project :
 
 - Dial 2048 of the cells.
 - Fun to kill time.
+
+
+# Project structure.
+
+### Components.
+
+* Buttons => "Game contols buttons" 
+* * ButtonLeft => "All cells will move to Left side"
+* * ButtonDown => "All cells will move to Down side"
+* * ButtonUp => "All cells will move to Up side"
+* * ButtonRight => "All cells will move to Right side"
+
+* NewGameButton
+ 
+* Cells
+* * 1
+* * 2
+* * 3
+* * 4
+* * 5
+* * 6
+* * 7
+* * 8
+* * 9
+* * 10
+* * 11
+* * 12
+* * 13
+* * 14
+* * 15
+* * 16
+
+>
+All cells on the board(1, 2, 3, 4 ...). 
+
+* Board => "This is where all the cells will be."
+
+### Containers.
+
+* ButtonsControl => "Control over the control buttons."
+* NewGameButtonControl => "Control over the button "New Game"."
+* BoardContol
+* CellsControl
  
