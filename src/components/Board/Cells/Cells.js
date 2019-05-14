@@ -5,24 +5,7 @@ function Cells(props) {
   
   return (
     <div className={classes.Cells}>
-
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-      <div>{props.name}</div>
-    
+    {props.name}
     </div>
   );
 }

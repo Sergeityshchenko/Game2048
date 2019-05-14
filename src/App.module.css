@@ -3,3 +3,49 @@
   justify-content: center;
   margin-top: 20px;
 }
+h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+p {
+  text-align: center;
+}
+
+table {
+  margin: 0 auto;
+}
+
+.button {
+  background-color: #303030;
+  color: white;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.button:hover {
+  background-color: #50C8FF;
+  color: #303030;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.cell {
+  height: 100px;
+  width: 100px;
+  background-color: #303030;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

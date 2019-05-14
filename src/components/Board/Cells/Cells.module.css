@@ -1,5 +1,11 @@
-.Cells tr td {
-  display: flex;
-  margin-left: 50px;
-  border: 1px solid black;
+
+.Cells div {
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  color: blue;
+  border: 1px solid gray; 
+  
 }

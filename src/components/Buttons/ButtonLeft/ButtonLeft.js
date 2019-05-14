@@ -4,7 +4,7 @@ import classes from './ButtonLeft.module.css';
 function ButtonLeft(props) {
   return (
     <div className={classes.ButtonLeft}>
-      <button>Left</button>
+      <button onClick={event => props.Changed('name', event.target.value)}>Left</button>
     </div>
   );
 }
