@@ -6,7 +6,7 @@ import Board from "../src/components/Board/Board";
 
 class App extends Component {
   state = {
-   cells: [],
+   cells: [2],
   }
   
   

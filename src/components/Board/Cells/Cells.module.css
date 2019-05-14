@@ -1,11 +1,14 @@
 
+.Cells  { 
+  background-color:lightgray;
+}
+
 .Cells div {
-  margin-top: 0px;
-  padding-top: 0px;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  color: blue;
-  border: 1px solid gray; 
+  color: green;
+}
+.Cells div p  {
+ margin-top: 20px;
+  font-size: 2.5em;
   
 }
+

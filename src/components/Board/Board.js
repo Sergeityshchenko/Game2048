@@ -1,33 +1,31 @@
 import React from 'react';
 import classes from './Board.module.css';
-import Cell from '../Board/Cells/Cells';
+
+import Cells from '../Board/Cells/Cells';
 
 
 function Board(props) {
-
+  
   return (
     
     <div className={classes.Board}>
-    
-      <div className="f">{props.cells}</div>
-      <div className='2'>{props.cells}</div>
-      <div className='3'>{props.cells}</div>
-      <div className='4'>{props.cells}</div>
-      <div className="f">{props.cells}</div>
-      <div className='2'>{props.cells} </div>
-      <div className='3'>{props.cells}</div>
-      <div className='4'>{props.cells}</div>
-      <div className="f">{props.cells}</div>
-      <div className='2'>{props.cells}</div>
-      <div className='3'>{props.cells}</div>
-      <div className='4'>{props.cells}</div>
-      <div className="f">{props.cells}</div>
-      <div className='2'>{props.cells}</div>
-      <div className='3'>{props.cells}</div>
-      <div className='4'>{props.cells}</div>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
+      <Cells number={props.cells}></Cells>
       
-      
-      <Cell cells={props.cells}/>
     </div>
   );
 }

@@ -5,7 +5,11 @@ function Cells(props) {
   
   return (
     <div className={classes.Cells}>
-    {props.name}
+       <div>
+         <p>
+          {props.number}
+         </p>
+        </div>
     </div>
   );
 }
