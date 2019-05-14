@@ -5,9 +5,9 @@ function Cells(props) {
   
   return (
     <div className={classes.Cells}>
-       <div>
+       <div onChange={(number) => props.initStartingNumber(number)}>
          <p>
-          {props.number}
+        {props.number}
          </p>
         </div>
     </div>
