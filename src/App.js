@@ -77,7 +77,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NewGameButton  />
+      <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
+        {/* <NewGameButton initBoard={this.initBoard}/> */}
         {/* <Board cells={this.state.cells} initBoard={this.initBoard}/> */}
         <table>
             {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
