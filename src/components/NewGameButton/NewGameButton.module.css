@@ -1,0 +1,28 @@
+.NewGameButton div {
+  display: flex;
+  flex-direction: row;
+}
+.NewGameButton div h1 {
+  margin-left: 44%;
+}
+
+.NewGameButton div button {
+  background-color: #303030;
+  color: white;
+  height: 30px;
+  width: 100px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+} 
+.NewGameButton div button:hover {
+  background-color: #50C8FF;
+  color: #303030;
+  transition: background-color 0.5s, color 0.5s;
+}
