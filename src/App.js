@@ -45,7 +45,7 @@ class App extends Component {
     return cells;
   }
 
-  boardMoved(original, updated) {
+  cellsMoved(original, updated) {
     return (JSON.stringify(updated) !== JSON.stringify(original)) ? true : false;
   }
 
@@ -53,12 +53,24 @@ class App extends Component {
     if (!this.state.gameOver) {
       if (direction === 'up') {
         const movedUp = this.moveUp(this.state.cells);
-        if (this.boardMoved(this.state.board, movedUp.cells)) {
+        if (this.cellsMoved(this.state.cells, movedUp.cells)) {
+          if (this.cellsMoved(this.state.cells, movedUp.cells)) {
+            const upWithRandom = this.placeRandom(movedUp.cells);
+            
+          this.setState({cells: upWithRandom});  
+            
+          }
+        } 
+      }else if (direction === 'down') {
+        const movedDown = this.moveDown(this.state.cells);
+        if (this.cellsMoved(this.state.cells, movedDown.cells)) {
+          const downWithRandom = this.placeRandom(movedDown.cells);
 
+          this.setState({cells: downWithRandom});
         }
-      } 
-  }
-}
+      }
+    }
+  }  
 
   moveUp(inputBoard) {
     let rotatedRight = this.rotateRight(inputBoard);
@@ -69,9 +81,9 @@ class App extends Component {
       for (let c = 0; c < rotatedRight[r].length; c++) {
         let current = rotatedRight[r][c];
         (current === 0) ? row.unshift(current) : row.push(current);
+        
       }
       cells.push(row);
-      console.log(cells);
     }
 
     for (let r = 0; r < cells.length; r++) {
@@ -101,6 +113,7 @@ class App extends Component {
         (current === 0) ? row.push(current) : row.unshift(current);
       }
       cells.push(row);
+      console.log(cells);
     }
 
     for (let r = 0; r < cells.length; r++) {
