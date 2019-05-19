@@ -35,7 +35,7 @@ class App extends Component {
     const randomNumber = startingNumbers[Math.floor(Math.random() * startingNumbers.length)];
     return randomNumber;
   }
-  
+
   placeRandom(cells) {
     const blankCoordinates = this.getBlankCoordinates(cells);
     const randomCoordinate = blankCoordinates[Math.floor(Math.random() * blankCoordinates.length)];
@@ -256,13 +256,18 @@ class App extends Component {
         <NewGameButton  />
         <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
           <div className="button" onClick={() => {this.move('up')}}>Up</div>
-          <div className="button" onClick={() => {this.move('left')}}>Left</div>
-
+          
+        <div className="board">
+        <div className="buttonL" onClick={() => {this.move('left')}}>Left</div>
+        <div>
         <table>
-          cc{this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
+          {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
         </table>
+        </div>
+        <div className="buttonR" onClick={() => {this.move('right')}}>Right</div>
+        </div>
 
-         <div className="button" onClick={() => {this.move('right')}}>Right</div>
+         
          <div className="button" onClick={() => {this.move('down')}}>Down</div>
       </div>
     );
