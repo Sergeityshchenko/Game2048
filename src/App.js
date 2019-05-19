@@ -50,7 +50,6 @@ class App extends Component {
   }
 
   move(direction) {
-    if (!this.state.gameOver) {
       if (direction === 'up') {
         const movedUp = this.moveUp(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedUp.cells)) {
@@ -58,7 +57,7 @@ class App extends Component {
             const upWithRandom = this.placeRandom(movedUp.cells);
             
           this.setState({cells: upWithRandom});  
-            
+  
           }
         } 
       }else if (direction === 'down') {
@@ -68,8 +67,15 @@ class App extends Component {
 
           this.setState({cells: downWithRandom});
         }
+
+      }else if (direction === 'left') {
+        const movedLeft = this.moveLeft(this.state.cells);
+        if (this.cellsMoved(this.state.cells, movedLeft.cells)) {
+          const leftWithRandom = this.placeRandom(movedLeft.cells);
+
+          this.setState({cells: leftWithRandom});
+        }
       }
-    }
   }  
 
   moveUp(inputBoard) {
@@ -133,6 +139,33 @@ class App extends Component {
     return {cells,};
   }
 
+  moveLeft(inputBoard) {
+    let cells = [];
+
+    for (let r = 0; r < inputBoard.length; r++) {
+      let row = [];      
+      for (let c = inputBoard[r].length - 1; c >= 0; c--) {
+        let current = inputBoard[r][c];
+        (current === 0) ? row.push(current) : row.unshift(current);
+      }
+      cells.push(row);
+    }
+
+    for (let r = 0; r < cells.length; r++) {
+      for (let c = 0; c < cells.length; c++) {
+        if (cells[r][c] > 0 && cells[r][c] === cells[r][c + 1]) {
+          cells[r][c] = cells[r][c] * 2;
+          cells[r][c + 1] = 0;
+        } else if (cells[r][c] === 0 && cells[r][c + 1] > 0) {
+          cells[r][c] = cells[r][c + 1];
+          cells[r][c + 1] = 0;
+        }
+      }
+    }
+    
+    return {cells};
+  }
+
 
   rotateRight(matrix) {
     let result = [];
@@ -170,13 +203,16 @@ class App extends Component {
   handleKeyDown(e) {
     const up = 38;
     const down = 40;
+    const left = 37;
     
     if (e.keyCode === up) {
       this.move('up');
     } else if (e.keyCode === down) {
       this.move('down');
-    }
+    } else if (e.keyCode === left) {
+      this.move('left');
   }
+}
 
   render() {
     return (
@@ -185,11 +221,11 @@ class App extends Component {
         <NewGameButton  />
         <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
           <div className="button" onClick={() => {this.move('up')}}>Up</div>
-          <div className="button" onClick={() => {this.move('down')}}>Down</div>
+          <div className="button" onClick={() => {this.move('left')}}>Left</div>
         <table>
           {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
         </table>
-        
+         <div className="button" onClick={() => {this.move('down')}}>Down</div>
       </div>
     );
   }
