@@ -60,7 +60,7 @@ class App extends Component {
   
           }
         } 
-      }else if (direction === 'down') {
+      } else if (direction === 'down') {
         const movedDown = this.moveDown(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedDown.cells)) {
           const downWithRandom = this.placeRandom(movedDown.cells);
@@ -68,12 +68,19 @@ class App extends Component {
           this.setState({cells: downWithRandom});
         }
 
-      }else if (direction === 'left') {
+      } else if (direction === 'left') {
         const movedLeft = this.moveLeft(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedLeft.cells)) {
           const leftWithRandom = this.placeRandom(movedLeft.cells);
 
           this.setState({cells: leftWithRandom});
+        }
+      } else if (direction === 'right') {
+        const movedRight = this.moveRight(this.state.cells);
+        if (this.cellsMoved(this.state.cells, movedRight.cells)) {
+          const rightWithRandom = this.placeRandom(movedRight.cells);
+
+          this.setState({cells: rightWithRandom});
         }
       }
   }  
@@ -165,7 +172,32 @@ class App extends Component {
     
     return {cells};
   }
+  moveRight(inputBoard) {
+    let cells = [];
 
+    for (let r = 0; r < inputBoard.length; r++) {
+      let row = [];      
+      for (let c = 0; c < inputBoard[r].length; c++) {
+        let current = inputBoard[r][c];
+        (current === 0) ? row.unshift(current) : row.push(current);
+      }
+      cells.push(row);
+    }
+
+    for (let r = 0; r < cells.length; r++) {
+      for (let c = cells[r].length - 1; c >= 0; c--) {
+        if (cells[r][c] > 0 && cells[r][c] === cells[r][c - 1]) {
+          cells[r][c] = cells[r][c] * 2;
+          cells[r][c - 1] = 0;
+        } else if (cells[r][c] === 0 && cells[r][c - 1] > 0) {
+          cells[r][c] = cells[r][c - 1];
+          cells[r][c - 1] = 0;
+        }
+      }
+    }
+
+    return {cells};
+  }
 
   rotateRight(matrix) {
     let result = [];
@@ -204,6 +236,7 @@ class App extends Component {
     const up = 38;
     const down = 40;
     const left = 37;
+    const right = 39;
     
     if (e.keyCode === up) {
       this.move('up');
@@ -211,8 +244,10 @@ class App extends Component {
       this.move('down');
     } else if (e.keyCode === left) {
       this.move('left');
+    }else if (e.keyCode === right) {
+      this.move('right');
+    }
   }
-}
 
   render() {
     return (
@@ -225,6 +260,8 @@ class App extends Component {
         <table>
           {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
         </table>
+
+         <div className="button" onClick={() => {this.move('right')}}>Right</div>
          <div className="button" onClick={() => {this.move('down')}}>Down</div>
       </div>
     );
