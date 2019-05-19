@@ -71,6 +71,7 @@ class App extends Component {
         (current === 0) ? row.unshift(current) : row.push(current);
       }
       cells.push(row);
+      console.log(cells);
     }
 
     for (let r = 0; r < cells.length; r++) {
@@ -87,6 +88,36 @@ class App extends Component {
     cells = this.rotateLeft(cells);
 
     return {cells};
+  }
+
+  moveDown(inputBoard) {
+    let rotatedRight = this.rotateRight(inputBoard);
+    let cells = [];
+
+    for (let r = 0; r < rotatedRight.length; r++) {
+      let row = [];      
+      for (let c = rotatedRight[r].length - 1; c >= 0; c--) {
+        let current = rotatedRight[r][c];
+        (current === 0) ? row.push(current) : row.unshift(current);
+      }
+      cells.push(row);
+    }
+
+    for (let r = 0; r < cells.length; r++) {
+      for (let c = 0; c < cells.length; c++) {
+        if (cells[r][c] > 0 && cells[r][c] === cells[r][c + 1]) {
+          cells[r][c] = cells[r][c] * 2;
+          cells[r][c + 1] = 0;
+        } else if (cells[r][c] === 0 && cells[r][c + 1] > 0) {
+          cells[r][c] = cells[r][c + 1];
+          cells[r][c + 1] = 0;
+        }
+      }
+    }
+
+    cells = this.rotateLeft(cells);
+
+    return {cells,};
   }
 
 
@@ -125,9 +156,12 @@ class App extends Component {
   }
   handleKeyDown(e) {
     const up = 38;
+    const down = 40;
     
     if (e.keyCode === up) {
       this.move('up');
+    } else if (e.keyCode === down) {
+      this.move('down');
     }
   }
 
@@ -138,6 +172,7 @@ class App extends Component {
         <NewGameButton  />
         <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
           <div className="button" onClick={() => {this.move('up')}}>Up</div>
+          <div className="button" onClick={() => {this.move('down')}}>Down</div>
         <table>
           {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
         </table>
