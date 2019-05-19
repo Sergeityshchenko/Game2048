@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import './App.css';
-
 //import Board from "../src/components/Board/Board";
 import NewGameButton from '../src/components/NewGameButton/NewGameButton';
+
 
 class App extends Component {
   state = {
@@ -44,45 +44,104 @@ class App extends Component {
     
     return cells;
   }
+
   boardMoved(original, updated) {
     return (JSON.stringify(updated) !== JSON.stringify(original)) ? true : false;
   }
-  componentWillMount() {
-    this.initBoard();  
-    const body = document.querySelector('body');
-    body.addEventListener('keydown', this.handleKeyDown.bind(this));
+
+  move(direction) {
+    if (!this.state.gameOver) {
+      if (direction === 'up') {
+        const movedUp = this.moveUp(this.state.cells);
+        if (this.boardMoved(this.state.board, movedUp.cells)) {
+
+        }
+      } 
+  }
+}
+
+  moveUp(inputBoard) {
+    let rotatedRight = this.rotateRight(inputBoard);
+    let cells = [];
+
+    for (let r = 0; r < rotatedRight.length; r++) {
+      let row = [];
+      for (let c = 0; c < rotatedRight[r].length; c++) {
+        let current = rotatedRight[r][c];
+        (current === 0) ? row.unshift(current) : row.push(current);
+      }
+      cells.push(row);
+    }
+
+    for (let r = 0; r < cells.length; r++) {
+      for (let c = cells[r].length - 1; c >= 0; c--) {
+        if (cells[r][c] > 0 && cells[r][c] === cells[r][c - 1]) {
+          cells[r][c] = cells[r][c] * 2;
+          cells[r][c - 1] = 0;
+        } else if (cells[r][c] === 0 && cells[r][c - 1] > 0) {
+          cells[r][c] = cells[r][c - 1];
+          cells[r][c - 1] = 0;
+        }
+      }
+    }
+    cells = this.rotateLeft(cells);
+
+    return {cells};
+  }
+
+
+  rotateRight(matrix) {
+    let result = [];
+	
+  	for (let c = 0; c < matrix.length; c++) {
+	  	let row = [];
+	  	for (let r = matrix.length - 1; r >= 0; r--) {
+			  row.push(matrix[r][c]);
+		  }
+      result.push(row);
+	  }
+	
+	  return result;
+  }
+
+  rotateLeft(matrix) {
+  	let result = [];
+
+    for (let c = matrix.length - 1; c >= 0; c--) {
+      let row = [];
+      for (let r = matrix.length - 1; r >= 0; r--) {
+        row.unshift(matrix[r][c]);
+      }
+      result.push(row);
+    }
+
+    return result;
   }
   
+  componentWillMount() {
+    this.initBoard(); 
+    const body = document.querySelector('body');
+    body.addEventListener('keydown', this.handleKeyDown.bind(this)); 
+  }
   handleKeyDown(e) {
     const up = 38;
-    const right = 39;
-    const down = 40;
-    const left = 37
-    const n = 78;
     
     if (e.keyCode === up) {
       this.move('up');
-    } else if (e.keyCode === right) {
-      this.move('right');
-    } else if (e.keyCode === down) {
-      this.move('down');
-    } else if (e.keyCode === left) {
-      this.move('left');
-    } else if (e.keyCode === n) {
-      this.initBoard();
     }
   }
-  
-  render() {
 
+  render() {
     return (
       <div className="App">
-      <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
-        {/* <NewGameButton initBoard={this.initBoard}/> */}
-        {/* <Board cells={this.state.cells} initBoard={this.initBoard}/> */}
+        
+        <NewGameButton  />
+        <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
+          <div className="button" onClick={() => {this.move('up')}}>Up</div>
         <table>
-            {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
-          </table>
+          {this.state.cells.map((row, i) => (<Row   key={i} row={row} />))}
+        </table>
+        
       </div>
     );
   }
