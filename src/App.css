@@ -64,6 +64,23 @@ p {
   align-items: center;
 }
 
+.scoreBoard {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scoreBoard div {
+  width: 200px;
+  height: 40px;
+  background-color: #303030;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
 .cell {
   height: 100px;
   width: 100px;
