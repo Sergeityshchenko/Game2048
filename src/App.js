@@ -55,38 +55,40 @@ class App extends Component {
       if (direction === 'up') {
         const movedUp = this.moveUp(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedUp.cells)) {
-          if (this.cellsMoved(this.state.cells, movedUp.cells)) {
-            const upWithRandom = this.placeRandom(movedUp.cells);
+          let score = this.state.score;
+          const upWithRandom = this.placeRandom(movedUp.cells);
             
           this.setState({cells: upWithRandom,
-             score: this.state.score += movedUp.score});  
-  
-          }
+             score: score += movedUp.score});  
+             
         } 
       } else if (direction === 'down') {
         const movedDown = this.moveDown(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedDown.cells)) {
+          let score = this.state.score;
           const downWithRandom = this.placeRandom(movedDown.cells);
 
           this.setState({cells: downWithRandom,
-             score: this.state.score += movedDown.score});
+             score: score += movedDown.score});
         }
 
       } else if (direction === 'left') {
         const movedLeft = this.moveLeft(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedLeft.cells)) {
+          let score = this.state.score;
           const leftWithRandom = this.placeRandom(movedLeft.cells);
 
           this.setState({cells: leftWithRandom,
-             score: this.state.score += movedLeft.score});
+             score: score += movedLeft.score});
         }
       } else if (direction === 'right') {
         const movedRight = this.moveRight(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedRight.cells)) {
+          let score = this.state.score;
           const rightWithRandom = this.placeRandom(movedRight.cells);
 
           this.setState({cells: rightWithRandom, 
-            score: this.state.score += movedRight.score});
+            score: score += movedRight.score});
         }
       }
   }  
