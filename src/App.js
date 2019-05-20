@@ -8,12 +8,13 @@ import NewGameButton from '../src/components/NewGameButton/NewGameButton';
 class App extends Component {
   state = {
    cells: null,
+   score: 0
   }
 
   initBoard() {
     let cells = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
     cells = this.placeRandom(this.placeRandom(cells));
-    this.setState({cells});  
+    this.setState({cells, score: 0});  
   }
   
   getBlankCoordinates(cells) {
@@ -57,7 +58,8 @@ class App extends Component {
           if (this.cellsMoved(this.state.cells, movedUp.cells)) {
             const upWithRandom = this.placeRandom(movedUp.cells);
             
-          this.setState({cells: upWithRandom});  
+          this.setState({cells: upWithRandom,
+             score: this.state.score += movedUp.score});  
   
           }
         } 
@@ -66,7 +68,8 @@ class App extends Component {
         if (this.cellsMoved(this.state.cells, movedDown.cells)) {
           const downWithRandom = this.placeRandom(movedDown.cells);
 
-          this.setState({cells: downWithRandom});
+          this.setState({cells: downWithRandom,
+             score: this.state.score += movedDown.score});
         }
 
       } else if (direction === 'left') {
@@ -74,13 +77,16 @@ class App extends Component {
         if (this.cellsMoved(this.state.cells, movedLeft.cells)) {
           const leftWithRandom = this.placeRandom(movedLeft.cells);
 
-          this.setState({cells: leftWithRandom});
+          this.setState({cells: leftWithRandom,
+             score: this.state.score += movedLeft.score});
         }
       } else if (direction === 'right') {
         const movedRight = this.moveRight(this.state.cells);
         if (this.cellsMoved(this.state.cells, movedRight.cells)) {
           const rightWithRandom = this.placeRandom(movedRight.cells);
-          this.setState({cells: rightWithRandom});
+
+          this.setState({cells: rightWithRandom, 
+            score: this.state.score += movedRight.score});
         }
       }
   }  
@@ -88,6 +94,7 @@ class App extends Component {
   moveUp(inputBoard) {
     let rotatedRight = this.rotateRight(inputBoard);
     let cells = [];
+    let score = 0;
 
     for (let r = 0; r < rotatedRight.length; r++) {
       let row = [];
@@ -104,6 +111,7 @@ class App extends Component {
         if (cells[r][c] > 0 && cells[r][c] === cells[r][c - 1]) {
           cells[r][c] = cells[r][c] * 2;
           cells[r][c - 1] = 0;
+          score += cells[r][c];
         } else if (cells[r][c] === 0 && cells[r][c - 1] > 0) {
           cells[r][c] = cells[r][c - 1];
           cells[r][c - 1] = 0;
@@ -112,12 +120,13 @@ class App extends Component {
     }
     cells = this.rotateLeft(cells);
 
-    return {cells};
+    return {cells, score};
   }
 
   moveDown(inputBoard) {
     let rotatedRight = this.rotateRight(inputBoard);
     let cells = [];
+    let score = 0; 
 
     for (let r = 0; r < rotatedRight.length; r++) {
       let row = [];      
@@ -134,6 +143,7 @@ class App extends Component {
         if (cells[r][c] > 0 && cells[r][c] === cells[r][c + 1]) {
           cells[r][c] = cells[r][c] * 2;
           cells[r][c + 1] = 0;
+          score += cells[r][c];
         } else if (cells[r][c] === 0 && cells[r][c + 1] > 0) {
           cells[r][c] = cells[r][c + 1];
           cells[r][c + 1] = 0;
@@ -143,11 +153,12 @@ class App extends Component {
 
     cells = this.rotateLeft(cells);
 
-    return {cells,};
+    return {cells, score};
   }
 
   moveLeft(inputBoard) {
     let cells = [];
+    let score = 0;
 
     for (let r = 0; r < inputBoard.length; r++) {
       let row = [];      
@@ -163,6 +174,7 @@ class App extends Component {
         if (cells[r][c] > 0 && cells[r][c] === cells[r][c + 1]) {
           cells[r][c] = cells[r][c] * 2;
           cells[r][c + 1] = 0;
+          score += cells[r][c];
         } else if (cells[r][c] === 0 && cells[r][c + 1] > 0) {
           cells[r][c] = cells[r][c + 1];
           cells[r][c + 1] = 0;
@@ -170,10 +182,11 @@ class App extends Component {
       }
     }
     
-    return {cells};
+    return {cells, score};
   }
   moveRight(inputBoard) {
     let cells = [];
+    let score = 0;
 
     for (let r = 0; r < inputBoard.length; r++) {
       let row = [];      
@@ -189,6 +202,7 @@ class App extends Component {
         if (cells[r][c] > 0 && cells[r][c] === cells[r][c - 1]) {
           cells[r][c] = cells[r][c] * 2;
           cells[r][c - 1] = 0;
+          score += cells[r][c];
         } else if (cells[r][c] === 0 && cells[r][c - 1] > 0) {
           cells[r][c] = cells[r][c - 1];
           cells[r][c - 1] = 0;
@@ -196,7 +210,7 @@ class App extends Component {
       }
     }
 
-    return {cells};
+    return {cells, score};
   }
 
   rotateRight(matrix) {
@@ -255,7 +269,10 @@ class App extends Component {
         
         <NewGameButton  />
         <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
-          <div className="button" onClick={() => {this.move('up')}}>Up</div>
+
+        <div>Score: {this.state.score} !</div>  
+
+        <div className="button" onClick={() => {this.move('up')}}>Up</div>
           
         <div className="board">
         <div className="buttonL" onClick={() => {this.move('left')}}>Left</div>
