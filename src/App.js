@@ -270,7 +270,9 @@ class App extends Component {
         <NewGameButton  />
         <div className="button" onClick={() => {this.initBoard()}}>New Game</div>
 
-        <div>Score: {this.state.score} !</div>  
+        <div className="scoreBoard">
+          <div>Score: {this.state.score} !</div>
+          </div>  
 
         <div className="button" onClick={() => {this.move('up')}}>Up</div>
           
