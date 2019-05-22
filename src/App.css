@@ -30,12 +30,18 @@ p {
   margin-bottom: 25px;
   margin-top: 25px;
   text-align: center;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
 }
+
+.button:hover {
+  background-color: azure;
+  color: black;
+}
+
 .buttonL {
   margin-top: 150px;
   margin-right: 25px;
@@ -45,6 +51,7 @@ p {
   width: 40px;
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,9 +66,16 @@ p {
   width: 40px;
   border-radius: 5px;
   text-align: center;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.buttonL:hover,
+.buttonR:hover {
+  background-color: azure;
+  color: black;
 }
 
 .scoreBoard {
