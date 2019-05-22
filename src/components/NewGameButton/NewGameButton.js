@@ -5,7 +5,7 @@ function NewGameButton(props) {
   return (
     <div className={classes.NewGameButton}>
     <h1>2048 GAME</h1>
-    {/* <div onClick={props.initBoard()}>New game</div> */}
+    {/* <div className="button" onClick={(cells) => props.initBoard(cells)}>New game</div> */}
     </div>
   );
 }

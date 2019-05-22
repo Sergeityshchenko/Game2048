@@ -24,5 +24,6 @@
 .NewGameButton div button:hover {
   background-color: #50C8FF;
   color: #303030;
+  cursor: pointer;
   transition: background-color 0.5s, color 0.5s;
 }
