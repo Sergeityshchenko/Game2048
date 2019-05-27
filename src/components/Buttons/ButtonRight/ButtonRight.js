@@ -4,7 +4,7 @@ import classes from './ButtonRight.module.css';
 function ButtonRight(props) {
   return (
     <div className={classes.ButtonRight}>
-      <button>Right</button>
+      <div className="buttonR" onClick={() => props.move('right')}>Right</div>
     </div>
   );
 }
