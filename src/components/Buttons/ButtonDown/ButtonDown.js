@@ -4,7 +4,7 @@ import classes from './ButtonDown.module.css';
 function ButtonDown(props) {
   return (
     <div className={classes.ButtonDown}>
-      <button>Down</button>
+      <div className="button" onClick={() => props.move('down')}>Down</div>
     </div>
   );
 }
