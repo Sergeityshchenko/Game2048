@@ -23,6 +23,7 @@ p {
 .button {
   background-color: #303030;
   color: white;
+  border: 3px solid lightgray;
   height: 40px;
   width: 100px;
   border-radius: 5px;
@@ -40,6 +41,7 @@ p {
 .button:hover {
   background-color: azure;
   color: black;
+  border: 3px solid #303030;
 }
 
 .buttonL {
@@ -47,6 +49,7 @@ p {
   margin-right: 25px;
   background-color: #303030;
   color: white;
+  border: 3px solid lightgray;
   height: 100px;
   width: 40px;
   border-radius: 5px;
@@ -62,6 +65,7 @@ p {
   margin-left: 25px;
   background-color: #303030;
   color: white;
+  border: 3px solid lightgray;
   height: 100px;
   width: 40px;
   border-radius: 5px;
@@ -76,6 +80,7 @@ p {
 .buttonR:hover {
   background-color: azure;
   color: black;
+  border: 3px solid #303030;
 }
 
 .scoreBoard {
@@ -90,23 +95,13 @@ p {
   height: 40px;
   background-color: #303030;
   color: white;
+  border: 3px solid lightgray;
   border-radius: 5px;
   text-align: center;
   font-size: 1.5em;
 }
 
-.cell {
-  height: 100px;
-  width: 100px;
-  background-color: #303030;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.number {
-  color: #FFF;
-  font-size: 35px;
+p {
+  color: white;
+  font-size: 1.5em;
 }
