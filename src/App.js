@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 
 import './App.css';
-//import Board from "../src/components/Board/Board";
 import NewGameButton from '../src/components/NewGameButton/NewGameButton';
 import Row from '../src/components/Row/Row';
+
+import axios from "../src/axios";
 
 
 class App extends Component {
   state = {
    cells: null,
    score: 0,
-   gameOver: false,
+   gameOver: "",
    message: null
   }
 
@@ -276,10 +277,18 @@ rotateRight(matrix) {
     
     return (moves.includes(true)) ? false : true;
   }
+
+
+  componentDidMount() {
+    axios.get("gameOver.json").then(response => {
+      this.setState({gameOver: response.data});
+    });
+  }
   
   componentWillMount() {
     this.initBoard(); 
   }
+
 
   render() {
     return (
