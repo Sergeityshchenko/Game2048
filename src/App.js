@@ -9,13 +9,15 @@ import Row from '../src/components/Row/Row';
 class App extends Component {
   state = {
    cells: null,
-   score: 0
+   score: 0,
+   gameOver: false,
+   message: null
   }
 
   initBoard() {
     let cells = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
     cells = this.placeRandom(this.placeRandom(cells));
-    this.setState({cells, score: 0});  
+    this.setState({cells, score: 0, gameOver: false, message: null});  
   }
   
   getBlankCoordinates(cells) {
@@ -53,34 +55,45 @@ class App extends Component {
   }
 
   move(direction) {
+  if (!this.state.gameOver) {
     if (direction === 'up') {
       const movedUp = this.moveUp(this.state.cells);
       if (this.cellsMoved(this.state.cells, movedUp.cells)) {
         let score = this.state.score;
         const upWithRandom = this.placeRandom(movedUp.cells);
-          
-        this.setState({cells: upWithRandom,
-           score: score += movedUp.score});  
-           
+
+        if (this.checkForGameOver(upWithRandom)) {
+            this.setState({cells: upWithRandom, gameOver: true, message: 'Game over!'});
+          } else {
+            this.setState({cells: upWithRandom,
+              score: score += movedUp.score}); 
+          }  
       } 
     } else if (direction === 'down') {
       const movedDown = this.moveDown(this.state.cells);
       if (this.cellsMoved(this.state.cells, movedDown.cells)) {
         let score = this.state.score;
         const downWithRandom = this.placeRandom(movedDown.cells);
-
-        this.setState({cells: downWithRandom,
-           score: score += movedDown.score});
+ 
+        if (this.checkForGameOver(downWithRandom)) {
+          this.setState({cells: downWithRandom, gameOver: true, message: 'Game over!'});
+        } else {
+          this.setState({cells: downWithRandom,
+            score: score += movedDown.score}); 
+        }
       }
-
     } else if (direction === 'left') {
       const movedLeft = this.moveLeft(this.state.cells);
       if (this.cellsMoved(this.state.cells, movedLeft.cells)) {
         let score = this.state.score;
         const leftWithRandom = this.placeRandom(movedLeft.cells);
 
-        this.setState({cells: leftWithRandom,
-           score: score += movedLeft.score});
+        if (this.checkForGameOver(leftWithRandom)) {
+          this.setState({cells: leftWithRandom, gameOver: true, message: 'Game over!'});
+        } else {
+          this.setState({cells: leftWithRandom,
+            score: score += movedLeft.score});
+        }
       }
     } else if (direction === 'right') {
       const movedRight = this.moveRight(this.state.cells);
@@ -88,11 +101,21 @@ class App extends Component {
         let score = this.state.score;
         const rightWithRandom = this.placeRandom(movedRight.cells);
 
-        this.setState({cells: rightWithRandom, 
-          score: score += movedRight.score});
+        if (this.checkForGameOver(rightWithRandom)) {
+          this.setState({cells: rightWithRandom, gameOver: true, message: 'Game over!'});
+        } else {
+          this.setState({cells: rightWithRandom, 
+            score: score += movedRight.score});
+        }
+
+        
       }
     }
-}  
+  } 
+  else {
+    this.setState({message: 'YOU LOSE!. Please start a new game.'});
+  }
+} 
 
 moveUp(inputBoard) {
   let rotatedRight = this.rotateRight(inputBoard);
@@ -138,7 +161,6 @@ moveDown(inputBoard) {
       (current === 0) ? row.push(current) : row.unshift(current);
     }
     cells.push(row);
-    console.log(cells);
   }
 
   for (let r = 0; r < cells.length; r++) {
@@ -243,6 +265,17 @@ rotateRight(matrix) {
 
     return result;
   }
+
+  checkForGameOver(cells) {
+    let moves = [
+      this.cellsMoved(cells, this.moveUp(cells).cells),
+      this.cellsMoved(cells, this.moveRight(cells).cells),
+      this.cellsMoved(cells, this.moveDown(cells).cells),
+      this.cellsMoved(cells, this.moveLeft(cells).cells)
+    ];
+    
+    return (moves.includes(true)) ? false : true;
+  }
   
   componentWillMount() {
     this.initBoard(); 
@@ -259,6 +292,7 @@ rotateRight(matrix) {
            <div>Score: {this.state.score} !</div>
         </div> 
 
+        <p>{this.state.message}</p>
         <div className="button" onClick={() => {this.move('up')}}>Up</div> 
         <div className="board">
            <div className="buttonL" onClick={() => {this.move('left')}}>Left</div>
