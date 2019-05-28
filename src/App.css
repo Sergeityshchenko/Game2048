@@ -20,10 +20,12 @@ p {
   margin: 0 auto;
   padding: 0px;
 }
+
+
 .button {
   background-color: #303030;
   color: white;
-  border: 3px solid lightgray;
+  border: 1px solid lightgray;
   height: 40px;
   width: 100px;
   border-radius: 5px;
@@ -41,7 +43,7 @@ p {
 .button:hover {
   background-color: azure;
   color: black;
-  border: 3px solid #303030;
+  border: 1px solid #303030;
 }
 
 .buttonL {
@@ -49,7 +51,7 @@ p {
   margin-right: 25px;
   background-color: #303030;
   color: white;
-  border: 3px solid lightgray;
+  border: 1px solid lightgray;
   height: 100px;
   width: 40px;
   border-radius: 5px;
@@ -65,7 +67,7 @@ p {
   margin-left: 25px;
   background-color: #303030;
   color: white;
-  border: 3px solid lightgray;
+  border: 1px solid lightgray;
   height: 100px;
   width: 40px;
   border-radius: 5px;
@@ -80,7 +82,7 @@ p {
 .buttonR:hover {
   background-color: azure;
   color: black;
-  border: 3px solid #303030;
+  border: 1px solid #303030;
 }
 
 .scoreBoard {
@@ -95,7 +97,7 @@ p {
   height: 40px;
   background-color: #303030;
   color: white;
-  border: 3px solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 5px;
   text-align: center;
   font-size: 1.5em;

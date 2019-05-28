@@ -1,24 +1,2 @@
-.Board {
 
-  display: flex;
-  justify-content: center;
-  width: 408px;
-  height:408px;
-  background-color: light-gray; 
-  border: 3px solid gray;
-  border-radius: 5px;
-  margin-left: 35%;
-  
-  flex-wrap: wrap;
-}
-.Board div  {
-  margin-top: 0px;
-  padding-top: 0px;
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  color: blue;
-  border: 1px solid gray;
-  border-radius: 5px;
-}
 

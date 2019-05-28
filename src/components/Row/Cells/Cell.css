@@ -1,0 +1,64 @@
+.Cell {
+  height: 100px;
+  width: 100px;
+  background-color: #303030;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.color2 {
+  background-color: rgb(8, 85, 85);
+}
+
+.color4 {
+  background-color: rgb(41, 83, 6);
+}
+
+.color8 {
+  background-color: rgb(180, 9, 9);
+}
+
+.color16 {
+  background-color: rgb(231, 154, 12);
+}
+
+.color32 {
+  background-color: rgb(209, 209, 12);
+}
+
+.color64 {
+  background-color: rgb(16, 16, 221);
+}
+
+.color128 {
+  background-color: rgb(148, 15, 148);
+}
+
+.color256 {
+  background-color: rgb(235, 94, 117);
+}
+
+.color512 {
+  background-color: rgb(113, 195, 233);
+}
+
+.color1024 {
+  background-color: rgb(33, 207, 33);
+}
+
+.color2048 {
+  background-color: rgb(44, 44, 190);
+}
+
+.Number {
+  color: #FFF;
+  font-size: 35px;
+}
+
+
+

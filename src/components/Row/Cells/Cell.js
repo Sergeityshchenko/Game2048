@@ -1,13 +1,17 @@
-import React from 'react';
-import classes from './Cell.module.css';
+import React from "react";
+import "./Cell.css";
 
 function Cell(props) {
-  let value = (props.cellValue === 0) ? '' : (props.cellValue);
+  let color = 'Cell';
+  let value = (props.cellValue === 0) ? "" : (props.cellValue);
+  if (value) {
+    color  += ` color${value}`;
+  }
 
   return (
-    <td className={classes.Cell}>
-      <div className={classes.Cells}>
-        <div className={classes.Number}>{value}</div>
+    <td>
+      <div className={color}>
+        <div className="Number">{value}</div>
       </div>
     </td>
   );
