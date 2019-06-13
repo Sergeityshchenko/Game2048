@@ -8,8 +8,20 @@
   align-items: center;
 }
 
+.Number {
+  color: #FFF;
+  font-size: 35px;
+}
 
-
+@media (max-width: 360px) {
+  .Cell {
+    height: 47px;
+    width: 47px;
+  }
+  .Number {
+    font-size: 16px;
+  }
+}
 
 .color2 {
   background-color: rgb(8, 85, 85);
@@ -55,10 +67,7 @@
   background-color: rgb(44, 44, 190);
 }
 
-.Number {
-  color: #FFF;
-  font-size: 35px;
-}
+
 
 
 
