@@ -78,6 +78,22 @@ p {
   align-items: center;
 }
 
+@media (max-width: 360px) {
+  .button {
+    height: 40px;
+    width: 100px;
+  }
+  .buttonR {
+    margin-top: 75px;
+    margin-left: 13px;
+  }
+  .buttonL {
+    margin-top: 75px;
+    margin-right: 13px;
+    
+  }
+}
+
 .buttonL:hover,
 .buttonR:hover {
   background-color: azure;
